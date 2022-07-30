@@ -1,16 +1,24 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import {
+  buildCluster,
+  buildVPC,
+  buildJenkinsFargateService
+} from './ecs-cluster'
+import { buildFilesystem } from './filesystem'
 
 export class JenkinsDaggerExampleStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
+    const vpc = buildVPC(this)
+    const cluster = buildCluster(this, vpc, "JenkinsCluster")
+    const jenkinsFileSystem = buildFilesystem(this, vpc)
 
-    // example resource
-    // const queue = new sqs.Queue(this, 'JenkinsDaggerExampleQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    const service = buildJenkinsFargateService(this, {
+      cluster,
+      fileSystem: jenkinsFileSystem.fileSystem,
+      accessPoint: jenkinsFileSystem.accessPoint
+    })
   }
 }
