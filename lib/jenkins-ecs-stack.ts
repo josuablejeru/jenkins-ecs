@@ -7,7 +7,7 @@ import {
 } from './ecs-cluster'
 import { buildFilesystem } from './filesystem'
 
-export class JenkinsDaggerExampleStack extends Stack {
+export class JenkinsECSstack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 

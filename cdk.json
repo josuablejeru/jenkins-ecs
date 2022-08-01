@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/jenkins-dagger-example.ts",
+  "app": "npx ts-node --prefer-ts-exts bin/jenkins-ecs.ts",
   "watch": {
     "include": [
       "**"

@@ -47,7 +47,10 @@ export const buildJenkinsFargateService = (scope: Construct, props: JenkinsFarga
       containerPort: 8080,
       logDriver: ecs.LogDrivers.awsLogs({ streamPrefix: 'jenkins' }),
     },
-    loadBalancerName: 'jenkins-alb'
+    loadBalancerName: 'jenkins-alb',
+    maxHealthyPercent: 100,
+    minHealthyPercent: 0,
+    healthCheckGracePeriod: Duration.minutes(5)
   })
 
   loadBalancedFargateService.taskDefinition.addVolume({
