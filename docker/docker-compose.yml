@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  jenkins:
+    build: ./jenkins/
+    environment:
+      - JENKINS_ADMIN_ID=admin
+      - JENKINS_ADMIN_PASSWORD=password
+    ports:
+      - "8080:8080"

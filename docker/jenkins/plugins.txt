@@ -1,0 +1,6 @@
+git:latest
+metrics:4.2.10-389.v93143621b_050
+configuration-as-code:latest
+github-branch-source:latest
+authorize-project:latest
+build-timeout:latest

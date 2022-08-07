@@ -35,7 +35,7 @@ type JenkinsFargateServiceProps = {
   accessPoint: efs.IAccessPoint
 }
 
-export const buildJenkinsFargateService = (scope: Construct, props: JenkinsFargateServiceProps) => {
+export const buildJenkinsFargateService = (scope: Construct, props: JenkinsFargateServiceProps): ecsPatterns.ApplicationLoadBalancedFargateService => {
 
   const loadBalancedFargateService = new ecsPatterns.ApplicationLoadBalancedFargateService(scope, "JenkinsService", {
     cluster: props.cluster,
@@ -43,7 +43,7 @@ export const buildJenkinsFargateService = (scope: Construct, props: JenkinsFarga
     desiredCount: 1,
     cpu: 1024,
     taskImageOptions: {
-      image: ecs.ContainerImage.fromRegistry("jenkins/jenkins:lts"),
+      image: ecs.ContainerImage.fromAsset("./docker/jenkins/"),
       containerPort: 8080,
       logDriver: ecs.LogDrivers.awsLogs({ streamPrefix: 'jenkins' }),
     },
@@ -72,4 +72,6 @@ export const buildJenkinsFargateService = (scope: Construct, props: JenkinsFarga
   })
 
   loadBalancedFargateService.service.connections.allowTo(props.fileSystem, ec2.Port.tcp(2049));
+
+  return loadBalancedFargateService
 }

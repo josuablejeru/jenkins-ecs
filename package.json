@@ -1,8 +1,8 @@
 {
-  "name": "jenkins-dagger-example",
+  "name": "jenkins-ecs",
   "version": "0.1.0",
   "bin": {
-    "jenkins-dagger-example": "bin/jenkins-dagger-example.js"
+    "jenkins-ecs": "bin/jenkins-ecs.js"
   },
   "scripts": {
     "build": "tsc",
