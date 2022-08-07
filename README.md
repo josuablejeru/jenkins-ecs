@@ -1,7 +1,3 @@
-# Jenkins Dagger Example
+# Jenkins ECS Example
 
-
-- [CodeBuild Pipeline](https://tomgregory.com/integrating-aws-codebuild-into-jenkins-pipelines/)
-
-
-- [](https://tomgregory.com/using-jenkins-and-kaniko-to-build-docker-images-in-aws/)
+Example of deploying Jenkins to AWS ECS with AWS CDKv2
